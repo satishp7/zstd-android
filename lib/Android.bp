@@ -1,0 +1,55 @@
+// Copyright (C) 2017 The Android Open Source Project
+
+cc_library {
+    name: "libzstd",
+    host_supported: true,
+    
+    local_include_dirs: [
+        "common",
+    ],
+    
+    cflags: [
+		"-O3",
+		"-g",
+		"-Wall",
+		"-Wextra",
+		"-Wcast-qual",
+		"-Wcast-align",
+		"-Wshadow",
+		"-Wstrict-aliasing=1",
+		"-Wswitch-enum",
+		"-Wdeclaration-after-statement",
+		"-Wstrict-prototypes",
+		"-Wundef",
+		"-Wpointer-arith",
+		"-Wformat-security",
+    ],
+    
+	cppflags: [
+        "-DXXH_NAMESPACE=ZSTD_",
+		"-DZSTD_LEGACY_SUPPORT=4",
+	],
+
+    srcs: [
+        "common/entropy_common.c",
+        "common/fse_decompress.c",
+        "common/threading.c",
+        "common/zstd_common.c",
+        "common/error_private.c",
+        "common/pool.c",
+        "common/xxhash.c",
+        "compress/fse_compress.c",
+        "compress/huf_compress.c",
+        "compress/zstd_compress.c",
+        "compress/zstdmt_compress.c",
+        "decompress/huf_decompress.c",
+        "decompress/zstd_decompress.c",
+        "dictBuilder/cover.c",
+        "dictBuilder/divsufsort.c",
+        "dictBuilder/zdict.c",
+        "deprecated/zbuff_common.c",
+        "deprecated/zbuff_compress.c",
+        "deprecated/zbuff_decompress.c",
+    ],
+    export_include_dirs: [".", "common", ],
+}
